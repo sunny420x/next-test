@@ -9,7 +9,7 @@ const links = [
 
 export default function Header() {
   return (
-    <header className="bg-white/50">
+    <header className="bg-black/100 text-white">
       <nav className="container mx-auto flex justify-between items-center py-4">
         <Link href="/">Big Bother Project</Link>
 

@@ -16,7 +16,7 @@ export interface RichTextBlock {
 
 export function RichTextBlock({ block }: { block: RichTextBlock }) {
   return (
-    <div className="richtext">
+    <div className="richtext my-2">
       <BlocksRenderer
         content={block.content}
         blocks={{

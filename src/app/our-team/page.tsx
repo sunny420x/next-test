@@ -95,13 +95,14 @@ export default async function OurTeam() {
   const teamMembers = await getTeamMembers();
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-8">Our Team</h1>
+    <main className="container mx-auto bg-white/50 rounded-xl py-7 px-8 m-6 overflow-hidden">
+      <h1 className="text-3xl font-bold mb-4">Our Team</h1>
+      <p className="mb-8 mt-0">Everyone providing their time and efforts for our team.</p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {teamMembers.data.map((member: TeamMemberProps) => (
           <TeamMemberCard key={member.documentId} {...member} />
         ))}
       </div>
-    </div>
+    </main>
   );
 }
