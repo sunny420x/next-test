@@ -38,7 +38,7 @@ export const fetchApi = async <T>(
 
   try {
     const response = await fetch(url, { ...options, headers });
-    if (!response.ok) throw new Error("Failed to fetch team members");
+    if (!response.ok) console.log(response);
 
     const result = await response.json();
     return { data: result, status: response.status };
