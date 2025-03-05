@@ -26,9 +26,11 @@ export function TestimonialBlock({ block }: { block: TestimonialBlock }) {
           <Image
             src={imageUrl}
             alt={block.photo.alternativeText || block.authorName}
-            layout="fill"
-            objectFit="cover"
+            // layout="fill"
+            // objectFit="cover"
             className="w-full h-full object-center"
+            width={300}
+            height={300}
           />
         </div>
         <div className="p-8 col-span-2 flex flex-col justify-center">

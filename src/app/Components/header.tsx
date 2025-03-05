@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="bg-black/100 text-white">
       <nav className="container mx-auto flex justify-between items-center py-4">
-        <Link href="/">Big Bother Project</Link>
+        <Link href="/" className="font-bold">Big Bother Project</Link>
 
         <ul className="flex gap-4">
           {links.map((link) => (

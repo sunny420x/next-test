@@ -1,46 +1,15 @@
-import qs from "qs";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchApi } from "../utills/fetch";
 
 async function getTeamMembers() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:1337";
-  const path = "/api/team-members";
-
-  const url = new URL(path, baseUrl);
-
-  url.search = qs.stringify({
-    populate: {
-      photo: {
-        fields: ["alternativeText", "name", "url"],
-      },
-      blocks: {
-        on: {
-          "blocks.testimonial": {
-            populate: {
-              photo: {
-                fields: ["alternativeText", "name", "url"],
-              },
-            },
-          },
-          "blocks.spoiler": {
-            populate: true,
-          },
-          "blocks.rich-text": {
-            populate: true,
-          },
-        },
-      },
+  const res = await fetchApi("/api/team-members", {}, {
+    photo: {
+      fields: ["alternativeText", "name", "url"],
     },
   });
 
-  const res = await fetch(url);
-
-  if (!res.ok) throw new Error("Failed to fetch team members");
-
-  const data = await res.json();
-  console.log(data);
-
-  return data;
+  return res.data;
 }
 
 interface TeamMemberProps {
@@ -62,6 +31,7 @@ interface TeamMemberProps {
   };
 }
 
+// Card component to display each team member
 function TeamMemberCard({
   name,
   description,
@@ -85,14 +55,25 @@ function TeamMemberCard({
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{name}</h3>
         <p className="text-gray-600">{description}</p>
-        <p className="text-gray-600">{}</p>
       </div>
     </Link>
   );
 }
 
 export default async function OurTeam() {
-  const teamMembers = await getTeamMembers();
+  // Fetch the team members data
+  const teamMembers: any = await getTeamMembers();
+
+  // Handle loading state or empty data
+  if (!teamMembers || !teamMembers.data || teamMembers.data.length === 0) {
+    return (
+      <main className="container mx-auto bg-white/50 rounded-xl py-7 px-8 m-6 overflow-hidden">
+        <h1 className="text-3xl font-bold mb-4">Our Team</h1>
+        <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Everyone providing their time and efforts for our team.</p>
+        <p>No team members found.</p>
+      </main>
+    );
+  }
 
   return (
     <main className="container mx-auto bg-white/50 rounded-xl py-7 px-8 m-6 overflow-hidden">
