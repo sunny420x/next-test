@@ -56,9 +56,6 @@ export default function LoginPage() {
                 <Input label={"Username"} id={"username"} type={"text"} value={identifier} onChange={(e) => setIdentifier(e.target.value)} required />
                 <Input label={"Password"} id={"password"} type={"password"} value={password} onChange={(e) => setPassword(e.target.value)} required />
                 <div className="flex items-center justify-between">
-                    {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                        Sign In
-                    </button> */}
                     <Button label="Sign In"/>
                 </div>
             </form>
