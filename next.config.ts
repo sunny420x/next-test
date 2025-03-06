@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['localhost', 'strapi-qxa4.onrender.com'],
+    // domains: ['localhost', 'strapi-qxa4.onrender.com'],
     remotePatterns: [
       {
         protocol: "https",
