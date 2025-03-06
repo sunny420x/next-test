@@ -1,7 +1,11 @@
 "use server";
 import { cookies } from "next/headers";
 import { fetchApi } from "./fetch";
- 
+
+export const removeToken = async () => {
+  (await cookies()).delete("access_token");
+};
+
 export const setAccessToken = async (token: string) => {
   const cookie = await cookies();
   cookie.set("access_token", `${token}`, {
